@@ -1,147 +1,143 @@
-﻿<Window x:Class="Antivirus_and_security.MainWindow"
+﻿<Window x:Class="morden_dark_dashboard.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:view="clr-namespace:Antivirus_and_security.View"
-        Title="Cyber Defender"
+        Title="SecureShield"
         WindowStartupLocation="CenterScreen"
-        Width="1100"
-        Height="750"
-        MinWidth="800"
+        WindowState="Maximized"
+        MinWidth="900"
         MinHeight="600"
-        ResizeMode="CanResize"
         Background="{DynamicResource WindowBackground}">
 
-    <!-- ❌ REMOVE Viewbox (this was breaking responsiveness) -->
+    <Window.Resources>
+
+        <!-- Sidebar Button Style -->
+        <Style x:Key="SidebarButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#1F2937"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+
+    </Window.Resources>
 
     <Grid>
 
-        <!-- MAIN GRID -->
+        <!-- ✅ RESPONSIVE GRID -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+
+            <!-- Sidebar auto size (fits content) -->
+            <ColumnDefinition Width="Auto"/>
+
+            <!-- Main content takes remaining space -->
             <ColumnDefinition Width="*"/>
+
         </Grid.ColumnDefinitions>
 
-        <!-- ================================================= -->
-        <!-- SIDEBAR -->
-        <!-- ================================================= -->
+        <!-- ================= SIDEBAR ================= -->
+        <Border Background="{DynamicResource CardBackground}"
+                MinWidth="240"
+                MaxWidth="320">
 
-        <Border Grid.Column="0"
-                Background="{DynamicResource CardBackground}"
-                CornerRadius="0,35,35,0">
+            <Grid Margin="15">
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                <StackPanel Margin="25">
-
-                    <!-- LOGO -->
-                    <Border Width="90"
-                            Height="90"
-                            CornerRadius="45"
-                            Background="#00E5C3"
-                            HorizontalAlignment="Center">
-
-                        <TextBlock Text="🛡"
-                                   FontSize="45"
-                                   Foreground="White"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                    </Border>
-
-                    <!-- TITLE -->
-                    <TextBlock Text="CYBER DEFENDER"
-                               Foreground="{DynamicResource PrimaryText}"
+                <!-- LOGO -->
+                <StackPanel Grid.Row="0" Margin="5">
+                    <TextBlock Text="🛡 ThreatCleaner"
+                               Foreground="{DynamicResource AccentColor}"
                                FontSize="24"
-                               FontWeight="Bold"
-                               Margin="0,20,0,0"
-                               HorizontalAlignment="Center"/>
+                               FontWeight="Bold"/>
 
-                    <TextBlock Text="Advanced Security Suite"
-                               Foreground="#00E5C3"
-                               FontSize="13"
-                               Margin="0,0,0,30"
-                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Antivirus Pro"
+                               Foreground="{DynamicResource SecondaryText}"
+                               FontSize="14"/>
+                </StackPanel>
 
-                    <!-- NAV BUTTONS -->
+                <!-- NAVIGATION -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+
                     <StackPanel>
 
-                        <Button Content="🏠 Dashboard"
-                                Height="55"
-                                Margin="0,8"
-                                Background="#1F2937"
-                                Foreground="White"
+                        <Button Content="Dashboard"
+                                Style="{StaticResource SidebarButtonStyle}"
                                 Click="DashboardBtn_Click"/>
 
-                        <Button Content="🛡 Protection"
-                                Height="55"
-                                Margin="0,8"
-                                Background="#1F2937"
-                                Foreground="White"
-                                Click="ProtectionBtn_Click"/>
+                        <Button Content="Scan"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="ScanBtn_Click"/>
 
-                        <Button Content="🔒 Privacy"
-                                Height="55"
-                                Margin="0,8"
-                                Background="#1F2937"
-                                Foreground="White"
+                        <Button Content="Real-time Protection"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="RealTimeBtn_Click"/>
+
+                        <Button Content="Quarantine"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="QuarantineBtn_Click"/>
+
+                        <Button Content="Threat History"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="ThreatBtn_Click"/>
+
+                        <Button Content="Firewall"
+                                Style="{StaticResource SidebarButtonStyle}"
+                                Click="FirewallBtn_Click"/>
+
+                        <Button Content="Privacy"
+                                Style="{StaticResource SidebarButtonStyle}"
                                 Click="PrivacyBtn_Click"/>
 
-                        <Button Content="⚡ Performance"
-                                Height="55"
-                                Margin="0,8"
-                                Background="#1F2937"
-                                Foreground="White"
+                        <Button Content="Performance"
+                                Style="{StaticResource SidebarButtonStyle}"
                                 Click="PerformanceBtn_Click"/>
 
-                        <Button Content="⚙ Settings"
-                                Height="55"
-                                Margin="0,8"
-                                Background="#1F2937"
-                                Foreground="White"
+                        <Button Content="Settings"
+                                Style="{StaticResource SidebarButtonStyle}"
                                 Click="SettingsBtn_Click"/>
 
                     </StackPanel>
 
-                    <!-- THEME -->
+                </ScrollViewer>
+
+                <!-- THEME -->
+                <StackPanel Grid.Row="2" Margin="5">
+
                     <TextBlock Text="Theme"
-                               
-                              Foreground="#00E5C3"
-                               FontSize="17"
-                               FontWeight="Bold"
-                               Margin="0,25,0,10"
+                               Foreground="{DynamicResource PrimaryText}"
+                               FontSize="16"
+                               Margin="0,10"
                                HorizontalAlignment="Center"/>
 
-                    <Button Content="☀ Light Theme"
-                            
-                            Background="#1F2937"
-                            Foreground="White"
-                            Height="45"
-                            Margin="0,5"
-                            Click="LightTheme_Click"/>
-
                     <Button Content="🌙 Dark Theme"
-                            Background="#1F2937"
-                            Foreground="White"
-                            Height="45"
-                            Margin="0,5"
+                            Style="{StaticResource SidebarButtonStyle}"
                             Click="DarkTheme_Click"/>
+
+                    <Button Content="☀ Light Theme"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Click="LightTheme_Click"/>
 
                 </StackPanel>
 
-            </ScrollViewer>
+            </Grid>
 
         </Border>
 
-        <!-- ================================================= -->
-        <!-- MAIN CONTENT AREA -->
-        <!-- ================================================= -->
-
+        <!-- ================= MAIN CONTENT ================= -->
         <Border Grid.Column="1"
-                Margin="20"
+                Margin="15"
                 Background="{DynamicResource CardBackground}"
-                CornerRadius="25"
-                Padding="10">
+                CornerRadius="20">
 
-            <ContentControl Name="MainContent"/>
+            <ContentControl x:Name="MainContent"/>
 
         </Border>
 

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Antivirus_and_security.View;
+using morden_dark_dashboard.View;
 
-namespace Antivirus_and_security
+namespace morden_dark_dashboard
 {
     public partial class MainWindow : Window
     {
@@ -9,22 +9,44 @@ namespace Antivirus_and_security
         {
             InitializeComponent();
 
-            MainContent.Content = new Dashboard();
+            MainContent.Content = new Dahboard();
         }
+
+        // ================= NAVIGATION =================
 
         private void DashboardBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new Dashboard();
+            MainContent.Content = new Dahboard();
         }
 
-        private void ProtectionBtn_Click(object sender, RoutedEventArgs e)
+        private void ScanBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new Protection();
+            MainContent.Content = new scan();
+        }
+
+        private void RealTimeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new Real_time_protection();
+        }
+
+        private void QuarantineBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new Quarantine();
+        }
+
+        private void ThreatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new Threat_History();
+        }
+
+        private void FirewallBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new Firewall();
         }
 
         private void PrivacyBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new Privacy();
+            MainContent.Content = new Privacy_Protection();
         }
 
         private void PerformanceBtn_Click(object sender, RoutedEventArgs e)
@@ -37,22 +59,16 @@ namespace Antivirus_and_security
             MainContent.Content = new Settings();
         }
 
-        // =====================================================
-        // LIGHT THEME
-        // =====================================================
-
-        private void LightTheme_Click(object sender, RoutedEventArgs e)
-        {
-            ((App)Application.Current).ChangeTheme("Light");
-        }
-
-        // =====================================================
-        // DARK THEME
-        // =====================================================
+        // ================= THEME SWITCH =================
 
         private void DarkTheme_Click(object sender, RoutedEventArgs e)
         {
             ((App)Application.Current).ChangeTheme("Dark");
+        }
+
+        private void LightTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).ChangeTheme("Light");
         }
     }
 }

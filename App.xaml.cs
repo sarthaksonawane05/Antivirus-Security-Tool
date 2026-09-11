@@ -1,27 +1,29 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
-namespace Antivirus_and_security
+namespace morden_dark_dashboard
 {
     public partial class App : Application
     {
-        public void ChangeTheme(string themeName)
+        public void ChangeTheme(string theme)
         {
-            ResourceDictionary theme = new ResourceDictionary();
-
-            switch (themeName)
+            var dict = new ResourceDictionary
             {
-                case "Light":
-                    theme.Source = new Uri("Themes/Light_Theme.xaml", UriKind.Relative);
-                    break;
+                Source = new Uri($"Theme/{theme}.xaml", UriKind.Relative)
+            };
 
-                default:
-                    theme.Source = new Uri("Themes/Dark_Themes.xaml", UriKind.Relative);
-                    break;
-            }
+            var oldThemes = Resources.MergedDictionaries
+                .Where(x =>
+                    x.Source != null &&
+                    (x.Source.ToString().Contains("Dark.xaml") ||
+                     x.Source.ToString().Contains("Light.xaml")))
+                .ToList();
 
-            Resources.MergedDictionaries.Clear();
-            Resources.MergedDictionaries.Add(theme);
+            foreach (var item in oldThemes)
+                Resources.MergedDictionaries.Remove(item);
+
+            Resources.MergedDictionaries.Add(dict);
         }
     }
 }
